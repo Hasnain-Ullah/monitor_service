@@ -1,0 +1,48 @@
+{
+  "monitoring": {
+    "default_interval": 30,
+    "consecutive_failures_for_down": 3,
+    "availability_threshold": 95.0,
+    "latency_threshold_ms": 500,
+    "recovery_successes": 2,
+    "window_size": 20
+  },
+  "endpoints": [
+    {
+      "name": "Health Check",
+      "url": "http://127.0.0.1:8000/health",
+      "method": "GET",
+      "interval": 30,
+      "timeout": 5,
+      "expected_status": 200,
+      "latency_threshold_ms": 500
+    },
+    {
+      "name": "Get Users",
+      "url": "http://127.0.0.1:8000/users",
+      "method": "GET",
+      "interval": 30,
+      "timeout": 5,
+      "expected_status": 200,
+      "latency_threshold_ms": 500
+    },
+    {
+      "name": "Slow Endpoint",
+      "url": "http://127.0.0.1:8000/slow",
+      "method": "GET",
+      "interval": 60,
+      "timeout": 15,
+      "expected_status": 200,
+      "latency_threshold_ms": 3000
+    },
+    {
+      "name": "Unstable Endpoint",
+      "url": "http://127.0.0.1:8000/unstable",
+      "method": "GET",
+      "interval": 30,
+      "timeout": 5,
+      "expected_status": 200,
+      "latency_threshold_ms": 500
+    }
+  ]
+}
