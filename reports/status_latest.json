@@ -1,0 +1,247 @@
+{
+  "timestamp": "2026-09-21T23:12:06.369356",
+  "summary": [
+    {
+      "endpoint": "Health Check",
+      "url": "http://127.0.0.1:8000/health",
+      "status": "UP",
+      "availability": 100.0,
+      "avg_latency_ms": 14.3,
+      "p95_latency_ms": 32.4,
+      "last_checked": "23:12:03"
+    },
+    {
+      "endpoint": "Get Users",
+      "url": "http://127.0.0.1:8000/users",
+      "status": "UP",
+      "availability": 100.0,
+      "avg_latency_ms": 18.5,
+      "p95_latency_ms": 36.8,
+      "last_checked": "23:12:03"
+    },
+    {
+      "endpoint": "Slow Endpoint",
+      "url": "http://127.0.0.1:8000/slow",
+      "status": "UP",
+      "availability": 100.0,
+      "avg_latency_ms": 3403.7,
+      "p95_latency_ms": 4697.7,
+      "last_checked": "23:12:05"
+    },
+    {
+      "endpoint": "Unstable Endpoint",
+      "url": "http://127.0.0.1:8000/unstable",
+      "status": "UP",
+      "availability": 35.0,
+      "avg_latency_ms": 19.6,
+      "p95_latency_ms": 56.0,
+      "last_checked": "23:12:05"
+    }
+  ],
+  "active_incidents": [
+    {
+      "id": 25,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DOWN",
+      "started_at": "2026-09-21T23:01:29.103950",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "3 consecutive failures",
+      "status": "active"
+    },
+    {
+      "id": 24,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T23:00:25.048813",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 60.0% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 23,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T23:00:25.002419",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 4717ms > threshold 3000ms",
+      "status": "active"
+    },
+    {
+      "id": 20,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T13:17:19.086311",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 0.0% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 19,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T13:17:18.887742",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 3139ms > threshold 3000ms",
+      "status": "active"
+    },
+    {
+      "id": 15,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:48:38.054057",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 66.67% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 14,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:47:29.149336",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 4086ms > threshold 3000ms",
+      "status": "active"
+    },
+    {
+      "id": 13,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DOWN",
+      "started_at": "2026-09-21T11:44:01.607465",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "3 consecutive failures",
+      "status": "active"
+    },
+    {
+      "id": 12,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:42:54.452877",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 33.33% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 11,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DOWN",
+      "started_at": "2026-09-21T11:41:45.270907",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "3 consecutive failures",
+      "status": "active"
+    },
+    {
+      "id": 10,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:40:39.936596",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 50.0% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 9,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:40:06.975916",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 3699ms > threshold 3000ms",
+      "status": "active"
+    },
+    {
+      "id": 8,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:39:28.566986",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 0.0% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 7,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:39:28.509305",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 4809ms > threshold 3000ms",
+      "status": "active"
+    },
+    {
+      "id": 6,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:36:21.552473",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 0.0% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:36:21.443362",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 4191ms > threshold 3000ms",
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:33:36.809099",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 0.0% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:33:36.432847",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 3713ms > threshold 3000ms",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "endpoint": "http://127.0.0.1:8000/unstable",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:30:34.577872",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "Availability 0.0% < threshold 95.0%",
+      "status": "active"
+    },
+    {
+      "id": 1,
+      "endpoint": "http://127.0.0.1:8000/slow",
+      "incident_type": "DEGRADED",
+      "started_at": "2026-09-21T11:30:34.527568",
+      "recovered_at": null,
+      "duration_seconds": null,
+      "reason": "P95 latency 4399ms > threshold 3000ms",
+      "status": "active"
+    }
+  ],
+  "total_endpoints": 4,
+  "endpoints_up": 4,
+  "endpoints_degraded": 0,
+  "endpoints_down": 0
+}

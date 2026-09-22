@@ -145,8 +145,10 @@ def main():
                 
                 print(f"  {status_icon} {name:<30} | {state_icon} {new_state:<12} | {round(result['response_time']*1000)}ms")
             
-            # Show summary
             reporters.print_status_summary(config, sm.states, database)
+
+            # Save incident report
+            reporters.save_incident_report(database)
             
             # Exit if --once
             if args.once:

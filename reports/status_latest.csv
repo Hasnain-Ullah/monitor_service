@@ -1,0 +1,5 @@
+endpoint,url,status,availability,avg_latency_ms,p95_latency_ms,last_checked
+Health Check,http://127.0.0.1:8000/health,UP,100.0,14.3,32.4,23:12:03
+Get Users,http://127.0.0.1:8000/users,UP,100.0,18.5,36.8,23:12:03
+Slow Endpoint,http://127.0.0.1:8000/slow,UP,100.0,3403.7,4697.7,23:12:05
+Unstable Endpoint,http://127.0.0.1:8000/unstable,UP,35.0,19.6,56.0,23:12:05

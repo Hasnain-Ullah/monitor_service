@@ -31,9 +31,9 @@ class StateManager:
         self.latency_threshold_ms = self.monitoring.get('latency_threshold_ms', 500)
         self.recovery_successes = self.monitoring.get('recovery_successes', 2)
         self.window_size = self.monitoring.get('window_size', 20)
+        self.min_checks_for_degraded = self.monitoring.get('min_checks_for_degraded', 5)
         
         # Per-endpoint state
-        # Structure: { url: { 'state': 'UP', 'consecutive_failures': 0, ... } }
         self.states = {}
         
         # Initialize states
@@ -62,11 +62,7 @@ class StateManager:
             check_result: Dict from checker.check_endpoint()
         
         Returns:
-            Dict with:
-                - old_state: Previous state
-                - new_state: Current state
-                - changed: Boolean (True if state changed)
-                - reason: String (why the state changed)
+            Dict with old_state, new_state, changed, reason, stats
         """
         if url not in self.states:
             self.states[url] = {
@@ -111,14 +107,18 @@ class StateManager:
         new_state = old_state
         reason = "No change"
         
+        # ============================================
         # RULE 1: DOWN - 3 consecutive failures
+        # ============================================
         if state['consecutive_failures'] >= self.consecutive_failures_for_down:
             if old_state != 'DOWN':
                 new_state = 'DOWN'
                 reason = f"{state['consecutive_failures']} consecutive failures"
                 state['incident_start'] = datetime.now().isoformat()
         
+        # ============================================
         # RULE 2: RECOVERED - Success after DOWN
+        # ============================================
         elif old_state == 'DOWN' and check_result['success']:
             if state['consecutive_successes'] >= self.recovery_successes:
                 new_state = 'UP'
@@ -127,23 +127,39 @@ class StateManager:
                 new_state = 'RECOVERED'
                 reason = f"Recovered after {state['consecutive_successes']} successful check(s)"
         
+        # ============================================
         # RULE 3: DEGRADED - High latency or low availability
+        # Only if we have enough checks
+        # ============================================
         elif old_state in ['UP', 'RECOVERED']:
-            if p95_latency * 1000 > latency_threshold:
-                new_state = 'DEGRADED'
-                reason = f"P95 latency {round(p95_latency*1000)}ms > threshold {latency_threshold}ms"
-                if old_state != 'DEGRADED':
-                    state['incident_start'] = datetime.now().isoformat()
-            elif availability < self.availability_threshold:
-                new_state = 'DEGRADED'
-                reason = f"Availability {availability}% < threshold {self.availability_threshold}%"
-                if old_state != 'DEGRADED':
-                    state['incident_start'] = datetime.now().isoformat()
+            # Only check for DEGRADED if we have enough data
+            has_enough_data = len(state['recent_checks']) >= self.min_checks_for_degraded
+            
+            if has_enough_data:
+                # Check high latency
+                if p95_latency * 1000 > latency_threshold:
+                    new_state = 'DEGRADED'
+                    reason = f"P95 latency {round(p95_latency*1000)}ms > threshold {latency_threshold}ms"
+                    if old_state != 'DEGRADED':
+                        state['incident_start'] = datetime.now().isoformat()
+                # Check low availability
+                elif availability < self.availability_threshold:
+                    new_state = 'DEGRADED'
+                    reason = f"Availability {availability}% < threshold {self.availability_threshold}%"
+                    if old_state != 'DEGRADED':
+                        state['incident_start'] = datetime.now().isoformat()
+                else:
+                    new_state = 'UP'
+                    reason = "Operating normally"
             else:
-                new_state = 'UP'
-                reason = "Operating normally"
+                # Not enough data yet, stay UP if currently UP
+                if old_state == 'UP':
+                    new_state = 'UP'
+                    reason = f"Waiting for more data ({len(state['recent_checks'])}/{self.min_checks_for_degraded})"
         
+        # ============================================
         # RULE 4: From DEGRADED to UP
+        # ============================================
         elif old_state == 'DEGRADED' and check_result['success']:
             if p95_latency * 1000 <= latency_threshold and availability >= self.availability_threshold:
                 new_state = 'UP'
