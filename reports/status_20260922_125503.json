@@ -1,29 +1,44 @@
 {
-  "timestamp": "2026-09-22T12:56:11.811287",
-  "total_incidents": 29,
-  "active_incidents": 24,
-  "resolved_incidents": 5,
-  "incidents": [
+  "timestamp": "2026-09-22T12:55:03.694879",
+  "summary": [
     {
-      "id": 29,
-      "endpoint": "http://127.0.0.1:8000/slow",
-      "incident_type": "DEGRADED",
-      "started_at": "2026-09-22T12:56:10.884814",
-      "recovered_at": null,
-      "duration_seconds": null,
-      "reason": "P95 latency 4829ms > threshold 3000ms",
-      "status": "active"
+      "endpoint": "Health Check",
+      "url": "http://127.0.0.1:8000/health",
+      "status": "UP",
+      "availability": 100.0,
+      "avg_latency_ms": 15.3,
+      "p95_latency_ms": 60.1,
+      "last_checked": "12:54:59"
     },
     {
-      "id": 28,
-      "endpoint": "http://127.0.0.1:8000/unstable",
-      "incident_type": "DOWN",
-      "started_at": "2026-09-22T12:55:36.600193",
-      "recovered_at": null,
-      "duration_seconds": null,
-      "reason": "3 consecutive failures",
-      "status": "active"
+      "endpoint": "Get Users",
+      "url": "http://127.0.0.1:8000/users",
+      "status": "UP",
+      "availability": 100.0,
+      "avg_latency_ms": 19.3,
+      "p95_latency_ms": 36.3,
+      "last_checked": "12:54:59"
     },
+    {
+      "endpoint": "Slow Endpoint",
+      "url": "http://127.0.0.1:8000/slow",
+      "status": "UP",
+      "availability": 100.0,
+      "avg_latency_ms": 3321.7,
+      "p95_latency_ms": 4815.9,
+      "last_checked": "12:55:03"
+    },
+    {
+      "endpoint": "Unstable Endpoint",
+      "url": "http://127.0.0.1:8000/unstable",
+      "status": "UP",
+      "availability": 35.0,
+      "avg_latency_ms": 17.2,
+      "p95_latency_ms": 39.5,
+      "last_checked": "12:55:03"
+    }
+  ],
+  "active_incidents": [
     {
       "id": 27,
       "endpoint": "http://127.0.0.1:8000/slow",
@@ -75,26 +90,6 @@
       "status": "active"
     },
     {
-      "id": 22,
-      "endpoint": "http://test.com",
-      "incident_type": "DOWN",
-      "started_at": "2026-09-21T13:19:20.003404",
-      "recovered_at": "2026-09-21T13:19:20.024087",
-      "duration_seconds": 0.020683,
-      "reason": "3 consecutive failures",
-      "status": "resolved"
-    },
-    {
-      "id": 21,
-      "endpoint": "http://test.com",
-      "incident_type": "DOWN",
-      "started_at": "2026-09-21T13:18:04.613986",
-      "recovered_at": "2026-09-21T13:18:04.628779",
-      "duration_seconds": 0.014793,
-      "reason": "3 consecutive failures",
-      "status": "resolved"
-    },
-    {
       "id": 20,
       "endpoint": "http://127.0.0.1:8000/unstable",
       "incident_type": "DEGRADED",
@@ -113,36 +108,6 @@
       "duration_seconds": null,
       "reason": "P95 latency 3139ms > threshold 3000ms",
       "status": "active"
-    },
-    {
-      "id": 18,
-      "endpoint": "http://test.com",
-      "incident_type": "DOWN",
-      "started_at": "2026-09-21T13:12:45.894478",
-      "recovered_at": "2026-09-21T13:12:45.908265",
-      "duration_seconds": 0.013787,
-      "reason": "3 consecutive failures",
-      "status": "resolved"
-    },
-    {
-      "id": 17,
-      "endpoint": "http://test.com",
-      "incident_type": "DOWN",
-      "started_at": "2026-09-21T13:07:01.141420",
-      "recovered_at": "2026-09-21T13:07:01.156807",
-      "duration_seconds": 0.015387,
-      "reason": "3 consecutive failures",
-      "status": "resolved"
-    },
-    {
-      "id": 16,
-      "endpoint": "http://test.com",
-      "incident_type": "DOWN",
-      "started_at": "2026-09-21T13:06:13.357662",
-      "recovered_at": "2026-09-21T13:06:13.372204",
-      "duration_seconds": 0.014542,
-      "reason": "3 consecutive failures",
-      "status": "resolved"
     },
     {
       "id": 15,
@@ -294,5 +259,9 @@
       "reason": "P95 latency 4399ms > threshold 3000ms",
       "status": "active"
     }
-  ]
+  ],
+  "total_endpoints": 4,
+  "endpoints_up": 4,
+  "endpoints_degraded": 0,
+  "endpoints_down": 0
 }
